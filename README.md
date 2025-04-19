@@ -3,6 +3,8 @@
 A data science project to predict the likelihood of diabetes in patients using various machine learning models. It includes **data cleaning**, **exploratory data analysis (EDA)**, **model training**, **evaluation**, and **hyperparameter tuning** to achieve maximum accuracy.
 
 ---
+[Demo](https://glucogrd.vercel.app/)
+---
 
 ### 📁 Dataset
 
