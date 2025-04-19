@@ -51,17 +51,11 @@ pip install pandas numpy matplotlib seaborn scikit-learn scipy
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/diabetes-prediction-ml.git
-cd diabetes-prediction-ml
+git clone https://github.com/imkhateeb/disease-prediction-analysis
+cd disease-prediction-analysis
 ```
 
-2. Run the notebook or Python script:
-
-```bash
-python diabetes_prediction.py
-```
-
-Or use Jupyter Notebook for interactive visualization.
+2. Run the Jupyter Notebook for interactive visualization.
 
 ---
 
