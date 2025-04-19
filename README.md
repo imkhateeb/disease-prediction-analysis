@@ -1,48 +1,97 @@
-# Final-Year-Disease-Prediction-Project
+## 🩺 Diabetes Disease Prediction using Machine Learning
 
+A data science project to predict the likelihood of diabetes in patients using various machine learning models. It includes **data cleaning**, **exploratory data analysis (EDA)**, **model training**, **evaluation**, and **hyperparameter tuning** to achieve maximum accuracy.
 
-Final Year Project on Diseases Prediction System Developed though Machine Learning and Python
+---
 
-## Youtube Implementation of Project : https://youtu.be/SxEmvvdmdd8
+### 📁 Dataset
 
-![clientLogo](https://user-images.githubusercontent.com/28294942/107939194-67b67180-6fac-11eb-8543-8024509dd03e.png)
+- **Source**: [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
+- **Features**:
+  - Pregnancies
+  - Glucose
+  - BloodPressure
+  - SkinThickness
+  - Insulin
+  - BMI
+  - DiabetesPedigreeFunction
+  - Age
+  - Outcome (0 = Non-diabetic, 1 = Diabetic)
 
+---
 
-**Machine Learning** - Machine learning is a method of data analysis that automates analytical model building. It is a branch of artificial intelligence based on the idea that systems can learn from data, identify patterns and make decisions with minimal human intervention.
+### 📊 Project Highlights
 
-**Scikit-learn (Sklearn)** is the most useful and robust library for machine learning in Python. It provides a selection of efficient tools for machine learning and statistical modeling including classification, regression, clustering and dimensionality reduction via a consistence interface in Python. This library, which is largely written in Python, is built upon NumPy, SciPy and Matplotlib.
+- Data cleaning (handling missing values & outliers)
+- Exploratory Data Analysis (correlation, age distribution)
+- Model building:
+  - Logistic Regression
+  - Random Forest
+  - Support Vector Machine (SVM)
+  - Decision Tree
+  - K-Nearest Neighbors (KNN)
+- Confusion matrices and classification reports for each model
+- Hyperparameter tuning using `GridSearchCV`
+- Model performance comparison via bar chart
 
-This System Predict Different types of Disease through given Symptoms. 
+---
 
-Datasets contain more than 4000 types of Diseases. 
+### 📌 Requirements
 
-You can use this Project in your college and work
+Install dependencies with:
 
-## Youtube Demo Video of Project : https://youtu.be/SxEmvvdmdd8
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn scipy
+```
 
-## Base Research paper : https://ieeexplore.ieee.org/document/9154130
+---
 
-******************************************************************************************************************************************************************
-Hi there👋
-## Need Complete Project  -
+### 🚀 How to Run
 
-Mail me Now at **vatshayan007@gmail.com** to get Project report, PPT, Project Code and Synopsis.
+1. Clone the repository:
 
-## CONTACT -
-Mail me at **vatshayan007@gmail.com** to get Help on kind of Project related to Machine Learning, Cryptography, Data Science and Web Development. 
+```bash
+git clone https://github.com/your-username/diabetes-prediction-ml.git
+cd diabetes-prediction-ml
+```
 
-### Need Code, Documents & Explanation video ? 
+2. Run the notebook or Python script:
 
-## How to Reach me :
+```bash
+python diabetes_prediction.py
+```
 
-### Mail : vatshayan007@gmail.com 
+Or use Jupyter Notebook for interactive visualization.
 
-### WhatsApp: **+91 9310631437** (Helping 24*7) **[CHAT](https://wa.me/message/CHWN2AHCPMAZK1)** 
+---
 
-### Website : https://www.finalproject.in/
+### 📈 Sample Output
 
-### 1000 Computer Science Projects : https://www.computer-science-project.in/
+- Accuracy of all models printed
+- Confusion matrices displayed per model
+- Final accuracy comparison plot
+- Best hyperparameters shown for best model
 
-Mail/Message me for Projects Help 🙏🏻
+---
 
-Ask Freely!
+### 📷 Visualizations
+
+- Age vs Outcome Bar Charts
+- Correlation Heatmaps
+- Confusion Matrices
+- Model Accuracy Comparison Bar Plot
+
+---
+
+### 🧠 Best Model
+
+The best-performing model on the cleaned dataset is **Logistic Regression** with **~77% accuracy**, depending on the final cleaned data distribution.
+
+---
+
+### 🛠️ Future Improvements
+
+- Deploy via **Streamlit** or **Flask**
+- Include **ROC-AUC**, **Precision-Recall Curves**
+- Add **Deep Learning** with TensorFlow or PyTorch
+- Integrate with a **medical assistant web app**
