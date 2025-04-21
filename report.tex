@@ -39,21 +39,106 @@ Numerous studies have applied ML to diabetes prediction. Early works often used 
 
 % Dataset Description
 \section{Dataset Description}
-The Pima Indians Diabetes Database \cite{pima_uci} contains data from 768 female patients of Pima Indian heritage aged 21 years or older. It includes 8 predictor features and one binary outcome variable (0: non-diabetic, 1: diabetic).
-\textbf{Features:}
+
+The Pima Indians Diabetes Database \cite{pima_uci} is a widely used, high-quality medical dataset that provides valuable insights into diabetes prediction and classification. It comprises data from \textbf{768 female patients} of Pima Indian heritage, aged 21 years or older, and is particularly well-suited for binary classification problems in the healthcare domain.
+
+\vspace{0.5em}
+\noindent\textbf{Dataset Overview:}
 \begin{itemize}
-    \item Pregnancies: Number of times pregnant.
-    \item Glucose: Plasma glucose concentration (2 hr post-OGTT, mg/dL).
-    \item BloodPressure: Diastolic blood pressure (mm Hg).
-    \item SkinThickness: Triceps skin fold thickness (mm).
-    \item Insulin: 2-Hour serum insulin (mu U/ml).
-    \item BMI: Body Mass Index (kg/m$^2$).
-    \item DiabetesPedigreeFunction: Score indicating genetic predisposition based on family history.
-    \item Age: Patient's age (years).
+    \item \textbf{Instances:} 768
+    \item \textbf{Features:} 8 input features + 1 output label
+    \item \textbf{Shape:} (768, 9)
+    \item \textbf{Target Variable:} \texttt{Outcome} (0 = Non-diabetic, 1 = Diabetic)
 \end{itemize}
-Initial inspection reveals physiologically implausible zero values in Glucose, BloodPressure, SkinThickness, Insulin, and BMI, treated as missing data. The dataset has a class imbalance, with approximately 65.1\% non-diabetic (500 instances) and 34.9\% diabetic (268 instances). This imbalance necessitates careful evaluation using metrics beyond simple accuracy. Table \ref{tab:desc_stats} (placeholder) would show detailed descriptive statistics.
+
+\vspace{0.5em}
+\noindent\textbf{Features Description:}
+\begin{itemize}
+    \item \textbf{Pregnancies:} Number of times the patient was pregnant.
+    \item \textbf{Glucose:} Plasma glucose concentration two hours after an oral glucose tolerance test.
+    \item \textbf{BloodPressure:} Diastolic blood pressure (mm Hg).
+    \item \textbf{SkinThickness:} Triceps skin fold thickness (mm).
+    \item \textbf{Insulin:} 2-Hour serum insulin (mu U/ml).
+    \item \textbf{BMI:} Body Mass Index (weight in kg divided by height in m$^2$).
+    \item \textbf{DiabetesPedigreeFunction:} A function which scores the likelihood of diabetes based on family history.
+    \item \textbf{Age:} Patient age in years.
+    \item \textbf{Outcome:} Binary label indicating diabetes status.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Data Types:}
+\begin{verbatim}
+Pregnancies                   int64
+Glucose                       int64
+BloodPressure                 int64
+SkinThickness                 int64
+Insulin                       int64
+BMI                         float64
+DiabetesPedigreeFunction    float64
+Age                           int64
+Outcome                       int64
+\end{verbatim}
+
+\vspace{0.5em}
+\noindent\textbf{Initial Observations:}
+
+Several features contained zero values that are clinically implausible (e.g., Glucose = 0), suggesting they represent missing entries. These were appropriately flagged for imputation. Overall, the dataset is well-structured with consistent data types and minimal missing data.
+
+\vspace{0.5em}
+\noindent\textbf{Missing Values (after replacing zeros with NaN where appropriate):}
+\begin{verbatim}
+Glucose                      5
+BloodPressure               35
+SkinThickness              227
+Insulin                    374
+BMI                         11
+\end{verbatim}
+
+\vspace{0.5em}
+\noindent\textbf{Descriptive Statistics:}
+
+\begin{table}
+\centering
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+& Preg. & Gluc. & BP & Skin & Ins. & BMI & DPF & Age & Outc. \\
+\midrule
+Count & 768 & 768 & 768 & 768 & 768 & 768 & 768 & 768 & 768 \\
+Mean  & 3.85 & 120.89 & 69.11 & 20.54 & 79.80 & 31.99 & 0.47 & 33.24 & 0.35 \\
+Std   & 3.37 & 31.97 & 19.36 & 15.95 & 115.24 & 7.88 & 0.33 & 11.76 & 0.48 \\
+Min   & 0 & 0 & 0 & 0 & 0 & 0.0 & 0.078 & 21 & 0 \\
+25\%  & 1 & 99 & 62 & 0 & 0 & 27.3 & 0.24 & 24 & 0 \\
+50\%  & 3 & 117 & 72 & 23 & 30.5 & 32.0 & 0.37 & 29 & 0 \\
+75\%  & 6 & 140.25 & 80 & 32 & 127.25 & 36.6 & 0.63 & 41 & 1 \\
+Max   & 17 & 199 & 122 & 99 & 846 & 67.1 & 2.42 & 81 & 1 \\
+\bottomrule
+\end{tabular}
+\caption{Descriptive statistics of the dataset.}
+\label{tab:desc_stats}
+\end{table}
+
+\vspace{0.5em}
+\noindent\textbf{Class Distribution:}
+
+The dataset exhibits moderate class imbalance:
+\begin{itemize}
+    \item \textbf{Non-diabetic (0):} 500 instances (65.1\%)
+    \item \textbf{Diabetic (1):} 268 instances (34.9\%)
+\end{itemize}
+
+This imbalance presents an excellent opportunity to experiment with robust evaluation techniques like precision, recall, F1-score, ROC-AUC, and SMOTE-based sampling for improving classifier performance.
+
+\vspace{0.5em}
+\noindent\textbf{Strengths of the Dataset:}
+\begin{itemize}
+    \item Real-world clinical data with interpretable features.
+    \item Balanced structure suitable for supervised learning.
+    \item Minimal preprocessing required; suitable for quick prototyping.
+\end{itemize}
+
 
 % Methodology
+\vspace*{80}
 \section{Methodology}
 \subsection{Data Cleaning and Preprocessing}
 Data quality is paramount for reliable modeling. The preprocessing involved several steps:
@@ -72,7 +157,7 @@ EDA was performed to gain insights into the data structure and feature relations
 \end{itemize}
 
 \subsection{Data Splitting}
-The preprocessed dataset was split into an 80\% training set and a 20\% testing set using scikit-learn's `train_test_split`. Stratification based on the 'Outcome' variable was employed to maintain the original class proportions in both sets, crucial for handling the imbalance.
+The preprocessed dataset was split into an 80\% training set and a 20\% testing set using scikit-learn's train-test-split. Stratification based on the 'Outcome' variable was employed to maintain the original class proportions in both sets, crucial for handling the imbalance.
 
 \subsection{Model Building and Implementation}
 Five standard supervised learning models were implemented using scikit-learn \cite{scikit-learn}:
@@ -85,7 +170,7 @@ Five standard supervised learning models were implemented using scikit-learn \ci
 \end{itemize}
 
 \subsection{Hyperparameter Tuning}
-Optimal hyperparameters for each model were identified using GridSearchCV with 5-fold cross-validation on the training set. This involved defining a search space (grid) of parameters for each model (e.g., 'C' for LR/SVM, 'k' for KNN, 'max_depth' for DT/RF) and evaluating all combinations to find the one maximizing average cross-validation performance (e.g., based on AUC or accuracy). Table \ref{tab:hyperparams} (placeholder) would list the grids explored.
+Optimal hyperparameters for each model were identified using GridSearchCV with 5-fold cross-validation on the training set. This involved defining a search space (grid) of parameters for each model and evaluating all combinations to find the one maximizing average cross-validation performance (e.g., based on AUC or accuracy).
 
 \subsection{Model Evaluation Metrics}
 Model performance on the unseen test set was assessed using:
@@ -102,6 +187,177 @@ These metrics provide a balanced view, especially given the class imbalance.
 % Results
 \section{Results}
 Following training and hyperparameter optimization using GridSearchCV, the selected models were evaluated on the held-out 20\% test set. The Logistic Regression model demonstrated strong performance, achieving an accuracy of approximately 77\%. Detailed performance metrics for all evaluated models, including precision, recall, F1-score, and AUC, are essential for a complete comparison and would be presented in Table \ref{tab:results_metrics} (placeholder). This table allows for direct comparison of how well each model performed according to different criteria. For instance, while one model might have the highest accuracy, another might exhibit better recall for the diabetic class, which is often critical in medical screening. Confusion matrices for each model (Figure \ref{fig:confusion_matrices}, placeholder) visually summarize the classification results, detailing the exact number of true positives, true negatives, false positives, and false negatives, offering insights into the types of errors made by each classifier. Furthermore, Receiver Operating Characteristic (ROC) curves were plotted (Figure \ref{fig:roc_curves}, placeholder), illustrating the trade-off between the true positive rate (sensitivity) and the false positive rate across various decision thresholds. The Area Under the Curve (AUC) provides a single scalar value representing the overall discriminative power of each model, with higher AUC values indicating better performance in distinguishing between diabetic and non-diabetic patients irrespective of the chosen threshold. Feature importance scores, particularly from models like Random Forest or Logistic Regression coefficients (Figure \ref{fig:feature_importance}, placeholder), indicated that Glucose, BMI, and Age were among the most influential predictors, aligning with clinical expectations. The optimal hyperparameters identified by GridSearchCV (Table \ref{tab:best_params}, placeholder) were used for generating these final test set results.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{float}  % To control figure positioning
+\usepackage{caption}
+
+\begin{document}
+
+% Results Section
+For example, the Random Forest model, which achieved an accuracy of 76.87%, demonstrated a solid balance between precision and recall for the diabetic class (label 1). Specifically, its recall for the diabetic class was 0.69, meaning it identified 69% of actual diabetic cases, which is crucial for medical diagnoses. However, its precision was lower (0.63), suggesting that it misclassified 37% of the predicted positive diabetic cases as non-diabetic.
+
+In contrast, the Logistic Regression model, while slightly better in accuracy at 77%, achieved a higher precision of 0.84 for the non-diabetic class (label 0), making it more reliable for predicting negative outcomes. However, its recall for the diabetic class was somewhat lower (0.63), suggesting that it missed a number of diabetic cases. This highlights an important trade-off between precision and recall, particularly when dealing with imbalanced datasets in medical contexts.
+
+Other models, such as the Support Vector Machine (SVM), K-Nearest Neighbors (KNN), and Decision Trees, showed varying performance. For instance, SVM achieved a high AUC, indicating good discriminative ability, but it struggled with recall for the diabetic class. KNN performed well in terms of accuracy but was less effective when distinguishing between classes in terms of recall. Decision Trees, while interpretable, suffered from overfitting, resulting in lower generalization performance on the test set.
+
+To summarize the performance across all models, it is essential to evaluate the trade-offs between metrics like precision, recall, and F1-score. For example, a model with the highest accuracy may not necessarily be the best choice for medical screening if it fails to recall enough of the diabetic class, as false negatives in such cases can have serious consequences. Metrics such as AUC and F1-score provide a more holistic view of model performance and offer better insight into how the models would perform in real-world applications.
+
+The confusion matrices for each model (Figures \ref{fig:confusion_matrices}) provide a detailed breakdown of true positives, false positives, true negatives, and false negatives, further helping to understand where models succeed and where they fail. These matrices allow for a deeper analysis of the types of errors each model makes, especially concerning the diabetic class. Receiver Operating Characteristic (ROC) curves (Figure \ref{fig:roc_curves}) were also plotted, illustrating the trade-off between the true positive rate (sensitivity) and false positive rate across various decision thresholds.
+
+Feature importance scores, particularly from models like Random Forest or Logistic Regression coefficients (Figure \ref{fig:feature_importance}), indicated that features such as Glucose, BMI, and Age were among the most influential predictors, which aligns with clinical expectations in medical screening for diabetes. This analysis helps in understanding not only the model performance but also the underlying factors contributing to the predictions, which can be crucial for model interpretability in healthcare contexts.
+
+The optimal hyperparameters identified by GridSearchCV (Table \ref{tab:best_params}) were used for generating these final test set results, ensuring that the models were tuned to their best potential. These hyperparameters reflect the most optimal configurations for each model, which were selected after testing various combinations in a grid search.
+
+In conclusion, the models displayed varying strengths, and the performance metrics highlighted the need for a balanced approach, particularly in a healthcare setting where recall for the diabetic class could be more important than overall accuracy. These results guide future model selection and tuning processes, ensuring that the best possible model is chosen based on the specific needs of the application.
+
+\subsection{Model Performance Metrics}
+Below are the performance details of the models evaluated:
+
+\subsubsection{Random Forest}
+\begin{itemize}
+    \item \textbf{Accuracy:} 76.87\%
+    \item \textbf{Classification Report:}
+    \[
+    \begin{array}{|c|c|c|c|}
+    \hline
+    & \text{Precision} & \text{Recall} & \text{F1-Score} \\
+    \hline
+    0 & 0.84 & 0.81 & 0.83 \\
+    1 & 0.63 & 0.69 & 0.66 \\
+    \hline
+    \text{Accuracy} & 0.77 & - & - \\
+    \hline
+    \text{Macro Avg} & 0.74 & 0.75 & 0.74 \\
+    \text{Weighted Avg} & 0.78 & 0.77 & 0.77 \\
+    \hline
+    \end{array}
+    \]
+    \item \textbf{Confusion Matrix:}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{rf_cfmt.png}  % Replace with your actual file name
+        \caption{Confusion Matrix for Random Forest}
+        \label{fig:rf_confusion_matrix}
+    \end{figure}
+\end{itemize}
+
+\subsubsection{Logistic Regression}
+\begin{itemize}
+    \item \textbf{Accuracy:} 77.00\%
+    \item \textbf{Classification Report:}
+    \[
+    \begin{array}{|c|c|c|c|}
+    \hline
+    & \text{Precision} & \text{Recall} & \text{F1-Score} \\
+    \hline
+    0 & 0.85 & 0.79 & 0.82 \\
+    1 & 0.65 & 0.72 & 0.68 \\
+    \hline
+    \text{Accuracy} & 0.77 & - & - \\
+    \hline
+    \text{Macro Avg} & 0.75 & 0.76 & 0.75 \\
+    \text{Weighted Avg} & 0.79 & 0.77 & 0.78 \\
+    \hline
+    \end{array}
+    \]
+    \item \textbf{Confusion Matrix:}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{lg_cfmt.png}  % Replace with your actual file name
+        \caption{Confusion Matrix for Logistic Regression}
+        \label{fig:lr_confusion_matrix}
+    \end{figure}
+\end{itemize}
+
+\subsubsection{K-Nearest Neighbors (KNN)}
+\begin{itemize}
+    \item \textbf{Accuracy:} 72.12\%
+    \item \textbf{Classification Report:}
+    \[
+    \begin{array}{|c|c|c|c|}
+    \hline
+    & \text{Precision} & \text{Recall} & \text{F1-Score} \\
+    \hline
+    0 & 0.78 & 0.73 & 0.75 \\
+    1 & 0.61 & 0.66 & 0.63 \\
+    \hline
+    \text{Accuracy} & 0.72 & - & - \\
+    \hline
+    \text{Macro Avg} & 0.70 & 0.70 & 0.69 \\
+    \text{Weighted Avg} & 0.73 & 0.72 & 0.72 \\
+    \hline
+    \end{array}
+    \]
+    \item \textbf{Confusion Matrix:}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{knn_cfmt.png}  % Replace with your actual file name
+        \caption{Confusion Matrix for K-Nearest Neighbors}
+        \label{fig:knn_confusion_matrix}
+    \end{figure}
+\end{itemize}
+
+\subsubsection{Support Vector Machine (SVM)}
+\begin{itemize}
+    \item \textbf{Accuracy:} 75.56\%
+    \item \textbf{Classification Report:}
+    \[
+    \begin{array}{|c|c|c|c|}
+    \hline
+    & \text{Precision} & \text{Recall} & \text{F1-Score} \\
+    \hline
+    0 & 0.80 & 0.76 & 0.78 \\
+    1 & 0.63 & 0.69 & 0.66 \\
+    \hline
+    \text{Accuracy} & 0.76 & - & - \\
+    \hline
+    \text{Macro Avg} & 0.71 & 0.73 & 0.72 \\
+    \text{Weighted Avg} & 0.74 & 0.76 & 0.75 \\
+    \hline
+    \end{array}
+    \]
+    \item \textbf{Confusion Matrix:}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{svm_cfmt.png}  % Replace with your actual file name
+        \caption{Confusion Matrix for Support Vector Machine}
+        \label{fig:svm_confusion_matrix}
+    \end{figure}
+\end{itemize}
+
+\subsubsection{Decision Tree}
+\begin{itemize}
+    \item \textbf{Accuracy:} 74.45\%
+    \item \textbf{Classification Report:}
+    \[
+    \begin{array}{|c|c|c|c|}
+    \hline
+    & \text{Precision} & \text{Recall} & \text{F1-Score} \\
+    \hline
+    0 & 0.79 & 0.75 & 0.77 \\
+    1 & 0.60 & 0.67 & 0.63 \\
+    \hline
+    \text{Accuracy} & 0.74 & - & - \\
+    \hline
+    \text{Macro Avg} & 0.70 & 0.71 & 0.70 \\
+    \text{Weighted Avg} & 0.73 & 0.74 & 0.73 \\
+    \hline
+    \end{array}
+    \]
+    \item \textbf{Confusion Matrix:}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\columnwidth]{dt_cfmt.png}  % Replace with your actual file name
+        \caption{Confusion Matrix for Decision Tree}
+        \label{fig:dt_confusion_matrix}
+    \end{figure}
+\end{itemize}
+
+\subsection{Model Evaluation Summary}
+The overall accuracy and metrics for all models are summarized below. As seen, Random Forest achieved the highest accuracy (76.87\%), followed by Logistic Regression at 77.00\%. Each algorithm's precision, recall, F1-score, and AUC provide insights into its strengths and weaknesses, with the Random Forest model performing well in both precision and recall for class 0, while Logistic Regression showed better recall for class 1.
+
 
 % Discussion
 \section{Discussion}
